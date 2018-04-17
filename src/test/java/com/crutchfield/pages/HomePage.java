@@ -17,9 +17,11 @@ public class HomePage  extends HelperDriverBase {
     private final By SEARCH_input = By.xpath(getLocator("SEARCH_input"));  // "//input[@name=\"search\"]" // getLocator("search_field")
 
     @Step("Search item: [{0}] ")
-    public void searchItem ( String sku){
+    public ProductPage searchItem ( String sku){
         setText(SEARCH_input, sku);
         findWebElement(SEARCH_input).sendKeys(Keys.ENTER);
+
+        return new ProductPage( driver);
     }
 
 

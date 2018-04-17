@@ -33,10 +33,12 @@ public class ProductPage extends HelperDriverBase {
     }
 
     @Step("ADD item to the CART ")
-    public void addItemAndGoToCart(){
+    public ShoppingCart addItemAndGoToCart(){
         addToCart();
         goToCard ();
+        return new ShoppingCart(driver);
     }
+
 
 
 

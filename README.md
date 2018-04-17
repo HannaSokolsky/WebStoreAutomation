@@ -23,9 +23,9 @@ using TestRunner for Mac (`runnerWShs.sh`) - obtain DropBox link  for [TestRunne
 
 
 ### Run all test and get reports
-mvn clean site  -Denv=prod  -DdriverType=Chrome  -Dng.suite=testng1.xml 
+mvn clean site  -Denv=prod  -DdriverType=Chrome  -Dng.suite=testng1
 ##### OR
-mvn clean site  -Denv=prod  -DdriverType=Chrome  -Dng.suite=testng2.xml 
+mvn clean site  -Denv=prod  -DdriverType=Chrome  -Dng.suite=testng2
 
 
 ### Skip all test

@@ -27,8 +27,9 @@ public class ShoppingCart extends HelperDriverBase{
     }
 
     @Step("Click 'CHECKOUT' button ")
-    public void proccedCheckout(){
+    public CheckoutPage proccedCheckout(){
         clickElement(CHECKOUT_btn);
+        return new CheckoutPage (driver);
     }
 
 

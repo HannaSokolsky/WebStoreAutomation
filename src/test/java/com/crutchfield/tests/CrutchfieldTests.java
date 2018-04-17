@@ -113,28 +113,30 @@ public class CrutchfieldTests extends TestBase{
     @TestCaseId("TestCaseId: TC-002")
     @Issues({ @Issue("Issue: CIR-003"), @Issue("Issue: CIR-004") })
     @Severity(SeverityLevel.NORMAL)
+
     @Test  (enabled = true, groups = {"regression"} , dataProvider = "searchItem" , dependsOnMethods = "startPageTitleTest" )
     public void shoudAddItemsToCartAndPurchase (  String... param ) throws Exception {  //
 
 
-         app.onHomePage().searchItem(param[1]);
-         app.onProdPage().addItemAndGoToCart();
-         app.onShoppingCartPage().addQuantity(param[2]).proccedCheckout();
-         app.onCheckoutPage()
-                             .provideAddress(new AddressData()
-                 .withFullName(param[3])
-                 .withAddress(param[4])
-                 .withZip(param[5])
-                 .withPhone(param[6])
-                 .withEmail(param[7]).withCity(param[8]).withState(param[9])   )
-                             .providePayment(new PaymentData()
-                 .withCardNumber(param[10]).withExpData(param[11]).withSecCod(param[12]));
-         String orderNum =  app.onCheckoutPage().recordOrderNumber();
-         assertThat( isCorrectValue(orderNum),
-                     is(allOf(  describedAs("[" + orderNum + "] is valid Order Number",
-                                is(true)),
-                                instanceOf(Boolean.class)   )));
-         storeTestRunResults(param[0], "CF", orderNum);
+
+        app.onHomePage().searchItem(param[1])
+                .addItemAndGoToCart()                          // app.onProdPage().addItemAndGoToCart();
+                .addQuantity(param[2])
+                .proccedCheckout()                             //app.onShoppingCartPage().addQuantity(param[2]).proccedCheckout();
+                .provideAddress(new AddressData()              //app.onCheckoutPage().provideAddress(new AddressData()
+                        .withFullName(param[3])
+                        .withAddress(param[4])
+                        .withZip(param[5])
+                        .withPhone(param[6])
+                        .withEmail(param[7]).withCity(param[8]).withState(param[9])   )
+                .providePayment(new PaymentData()
+                        .withCardNumber(param[10]).withExpData(param[11]).withSecCod(param[12]));
+        String orderNum =  app.onCheckoutPage().recordOrderNumber();
+        assertThat( isCorrectValue(orderNum),
+                is(allOf(  describedAs("[" + orderNum + "] is valid Order Number",
+                        is(true)),
+                        instanceOf(Boolean.class)   )));
+        storeTestRunResults(param[0], "CF", orderNum);
 
             }
 
